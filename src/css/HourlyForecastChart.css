@@ -1,0 +1,5 @@
+.chart-container {
+    width: 80%;
+    margin: 0 auto;
+    margin-left: 30%; /* 调整这个值以控制图表向右移动的距离 */
+  }

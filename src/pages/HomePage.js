@@ -1,7 +1,6 @@
 // src/HomePage.js
 import React, { useState } from 'react';
-import Weather from './Weather';
-import './App.css';
+import Weather from '../components/Weather';
 
 const HomePage = () => {
     const [city, setCity] = useState('');
