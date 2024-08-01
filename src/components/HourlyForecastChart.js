@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
-import '../css/HourlyForecastChart.css';
+import '../css/HourlyForecastChart.css'; // 确保路径正确
 
 const HourlyForecastChart = ({ hourlyForecast }) => {
   const data = {
@@ -23,6 +23,7 @@ const HourlyForecastChart = ({ hourlyForecast }) => {
 
   const options = {
     responsive: true,
+    animation: false, 
     plugins: {
       tooltip: {
         callbacks: {
@@ -61,7 +62,7 @@ const HourlyForecastChart = ({ hourlyForecast }) => {
   };
 
   return (
-    <div className="chart-container">
+    <div className="chart-container" style={{ height: '350px', width: '800px' }}>
       <Line data={data} options={options} />
     </div>
   );
