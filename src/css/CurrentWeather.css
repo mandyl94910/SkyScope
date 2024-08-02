@@ -10,17 +10,16 @@
   
   .current-weather-temp {
     margin-left: 20%;
-    flex: 1;
     text-align: left;
   }
   
   .current-weather-icon {
-    flex: 1;
+    margin-left: 15%;
     text-align: center;
   }
   
   .current-weather-details {
-    margin-left: 10%;
+    margin-left: 15%;
     flex: 2;
     text-align: left;
   }
@@ -40,3 +39,12 @@
     margin: 5px 0;
   }
   
+  .custom-font-size {
+    font-size: 60px;
+    font-weight: bold;
+  }
+
+  .weather-icon {
+    width: 100px; /* 根据需要调整宽度 */
+    height: 100px; /* 根据需要调整高度 */
+  }

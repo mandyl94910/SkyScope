@@ -4,6 +4,7 @@ import WeatherChart from '../components/WeatherChart';
 import HourlyForecastChart from '../components/HourlyForecastChart';
 import { generateFakeWeatherData, generateFakeHourlyForecast, generateFakeDailyForecast } from '../mockData';//使用假数据部分
 import '../css/CurrentWeather.css'; 
+import { icons, iconTexts } from '../assets/icons'; // 导入图标映射和文本映射
 
 const Weather = ({ city }) => {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -131,6 +132,111 @@ const Weather = ({ city }) => {
     }
   }, [city, apiKey, useMockData]);
 
+//   useEffect(() => {
+//     const fetchLocationKey = async (city) => {
+//         try {
+//             const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     q: city
+//                 }
+//             });
+//             const location = locationResponse.data[0];
+//             setCityName(location.LocalizedName);
+//             return location.Key;
+//         } catch (error) {
+//             console.error('Error fetching location key:', error);
+//             setError(error);
+//             setLoading(false);
+//         }
+//     };
+
+//     const fetchWeatherData = async (locationKey) => {
+//         try {
+//             const weatherResponse = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     details: true
+//                 }
+//             });
+//             setCurrentWeather(weatherResponse.data[0]);
+            
+//             const hourlyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     metric: true
+//                 }
+//             });
+//             setHourlyForecast(hourlyResponse.data);
+            
+//             const dailyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     metric: true
+//                 }
+//             });
+//             setDailyForecast(dailyResponse.data.DailyForecasts);
+
+//             setLoading(false);
+//         } catch (error) {
+//             console.error('Error fetching weather data:', error);
+//             setError(error);
+//             setLoading(false);
+//         }
+//     };
+
+//     const getUserLocation = () => {
+//         if (navigator.geolocation) {
+//             navigator.geolocation.getCurrentPosition(
+//                 position => {
+//                     const { latitude, longitude } = position.coords;
+//                     fetchLocationKeyByCoords(latitude, longitude).then(locationKey => {
+//                         if (locationKey) {
+//                             fetchWeatherData(locationKey);
+//                         }
+//                     });
+//                 },
+//                 error => {
+//                     console.error('Error fetching geolocation:', error);
+//                     setError(error);
+//                     setLoading(false);
+//                 }
+//             );
+//         } else {
+//             setError(new Error('Geolocation is not supported by this browser.'));
+//             setLoading(false);
+//         }
+//     };
+
+//     const fetchLocationKeyByCoords = async (latitude, longitude) => {
+//         try {
+//             const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     q: `${latitude},${longitude}`
+//                 }
+//             });
+//             const location = locationResponse.data;
+//             setCityName(location.ParentCity ? location.ParentCity.LocalizedName : location.LocalizedName);
+//             return location.Key;
+//         } catch (error) {
+//             console.error('Error fetching location key:', error);
+//             setError(error);
+//             setLoading(false);
+//         }
+//     };
+
+//     if (city) {
+//         fetchLocationKey(city).then(locationKey => {
+//             if (locationKey) {
+//                 fetchWeatherData(locationKey);
+//             }
+//         });
+//     } else {
+//         getUserLocation();
+//     }
+// }, [city, apiKey]);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -140,10 +246,10 @@ const Weather = ({ city }) => {
       {currentWeather && (
         <div className="chart-item">
           <div className="current-weather-temp">
-            <h1 className="text-5xl font-bold">{currentWeather.Temperature.Metric.Value} °C</h1>
+            <h1 className="custom-font-size">{currentWeather.Temperature.Metric.Value} °C</h1>
           </div>
           <div className="current-weather-icon">
-            <img src="path_to_placeholder_image" alt="Weather Icon" /> {/* 替换为实际的图标路径 */}
+            <img className="weather-icon" src={icons[currentWeather.WeatherIcon]} alt="Weather Icon" />
           </div>
           <div className="current-weather-details">
             <ul className="no-bullets">

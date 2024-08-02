@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/WeatherChart.css'; 
+import { icons, iconTexts } from '../assets/icons'; // 导入图标映射和文本映射
 
 const WeatherChart = ({ dailyForecast }) => {
   return (
@@ -16,7 +17,10 @@ const WeatherChart = ({ dailyForecast }) => {
               </div>
             </div>
             <div className="weather-icon">
-              <img src={`path_to_your_icons/${day.Day.Icon}.png`} alt={day.Day.IconPhrase} /> {/* 替换为实际的图标路径 */}
+              <img className="weather-icon" src={icons[day.Day.Icon]} alt={day.Day.IconPhrase} /> {/* 使用图标映射 */}
+            </div>
+            <div className="weather-text" >
+              <span>{iconTexts[day.Day.Icon]}</span> {/* 显示对应的文本 */}
             </div>
             <div className="temperature">
               <div className="temp-row">

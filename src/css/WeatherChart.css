@@ -22,7 +22,7 @@
     justify-content: space-between;
     background: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
   }
@@ -44,6 +44,8 @@
   .weather-icon {
     flex: 1;
     text-align: center;
+    width: 100px; /* 根据需要调整宽度 */
+    height: 100px; /* 根据需要调整高度 */
   }
   
   .temperature {
@@ -77,3 +79,6 @@
     color: #555555;
   }
   
+  .weather-text{
+    width: 200px;
+  }
