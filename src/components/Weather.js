@@ -4,7 +4,7 @@ import WeatherChart from '../components/WeatherChart';
 import HourlyForecastChart from '../components/HourlyForecastChart';
 // Import CSS styles
 import '../css/CurrentWeather.css'; 
-import { icons, iconTexts } from '../assets/icons'; // Import icon mappings
+import { icons } from '../assets/icons'; // Import icon mappings
 
 // Weather component to fetch and display weather data
 const Weather = ({ city }) => {
