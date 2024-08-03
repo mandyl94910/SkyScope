@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import WeatherChart from '../components/WeatherChart';
 import HourlyForecastChart from '../components/HourlyForecastChart';
-// import { generateFakeWeatherData, generateFakeHourlyForecast, generateFakeDailyForecast } from '../mockData';//使用假数据部分
+import { generateFakeWeatherData, generateFakeHourlyForecast, generateFakeDailyForecast } from '../mockData';//使用假数据部分
 import '../css/CurrentWeather.css'; 
 import { icons, iconTexts } from '../assets/icons'; // 导入图标映射和文本映射
 
@@ -15,229 +15,227 @@ const Weather = ({ city }) => {
   const [cityName, setCityName] = useState('');
 
   const apiKey = 'BTYZ5eALVp2bqivFbaRd1iNECLAnv1qZ';
-
-//   const useMockData = process.env.REACT_APP_USE_MOCK_DATA === 'true';//使用假数据部分
-
-//   useEffect(() => {
-//     if (useMockData) {
-//       //使用假数据部分
-//       console.log('Using mock data:', useMockData);
-//       setCurrentWeather(generateFakeWeatherData());
-//       setHourlyForecast(generateFakeHourlyForecast());
-//       setDailyForecast(generateFakeDailyForecast());
-//       setCityName(city || 'Mock City');
-//       setLoading(false);
-//     } else {//使用假数据部分结束
-//       const fetchLocationKey = async (city) => {
-//         try {
-//           const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
-//             params: {
-//               apikey: apiKey,
-//               q: city,
-//             },
-//           });
-//           const location = locationResponse.data[0];
-//           setCityName(location.LocalizedName);
-//           return location.Key;
-//         } catch (error) {
-//           console.error('Error fetching location key:', error);
-//           setError(error);
-//           setLoading(false);
-//         }
-//       };
-  
-//       const fetchWeatherData = async (locationKey) => {
-//         try {
-//           const weatherResponse = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`, {
-//             params: {
-//               apikey: apiKey,
-//               details: true,
-//             },
-//           });
-//           setCurrentWeather(weatherResponse.data[0]);
-  
-//           const hourlyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}`, {
-//             params: {
-//               apikey: apiKey,
-//               metric: true,
-//             },
-//           });
-//           setHourlyForecast(hourlyResponse.data);
-  
-//           const dailyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}`, {
-//             params: {
-//               apikey: apiKey,
-//               metric: true,
-//             },
-//           });
-//           setDailyForecast(dailyResponse.data.DailyForecasts);
-  
-//           setLoading(false);
-//         } catch (error) {
-//           console.error('Error fetching weather data:', error);
-//           setError(error);
-//           setLoading(false);
-//         }
-//       };
-  
-//       const getUserLocation = () => {
-//         if (navigator.geolocation) {
-//           navigator.geolocation.getCurrentPosition(
-//             (position) => {
-//               const { latitude, longitude } = position.coords;
-//               fetchLocationKeyByCoords(latitude, longitude).then((locationKey) => {
-//                 if (locationKey) {
-//                   fetchWeatherData(locationKey);
-//                 }
-//               });
-//             },
-//             (error) => {
-//               console.error('Error fetching geolocation:', error);
-//               setError(error);
-//               setLoading(false);
-//             }
-//           );
-//         } else {
-//           setError(new Error('Geolocation is not supported by this browser.'));
-//           setLoading(false);
-//         }
-//       };
-  
-//       const fetchLocationKeyByCoords = async (latitude, longitude) => {
-//         try {
-//           const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
-//             params: {
-//               apikey: apiKey,
-//               q: `${latitude},${longitude}`,
-//             },
-//           });
-//           const location = locationResponse.data;
-//           setCityName(location.ParentCity ? location.ParentCity.LocalizedName : location.LocalizedName);
-//           return location.Key;
-//         } catch (error) {
-//           console.error('Error fetching location key:', error);
-//           setError(error);
-//           setLoading(false);
-//         }
-//       };
-  
-//       if (city) {
-//         fetchLocationKey(city).then((locationKey) => {
-//           if (locationKey) {
-//             fetchWeatherData(locationKey);
-//           }
-//         });
-//       } else {
-//         getUserLocation();
-//       }
-//     }
-//   }, [city, apiKey, useMockData]);
-
+  const useMockData = process.env.REACT_APP_USE_MOCK_DATA === 'true';//使用假数据部分
 
   useEffect(() => {
-    const fetchLocationKey = async (city) => {
+    if (useMockData) {
+      //使用假数据部分
+      console.log('Using mock data:', useMockData);
+      setCurrentWeather(generateFakeWeatherData());
+      setHourlyForecast(generateFakeHourlyForecast());
+      setDailyForecast(generateFakeDailyForecast());
+      setCityName(city || 'Mock City');
+      setLoading(false);
+    } else {//使用假数据部分结束
+      const fetchLocationKey = async (city) => {
         try {
-            const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
-                params: {
-                    apikey: apiKey,
-                    q: city
-                }
-            });
-            const location = locationResponse.data[0];
-            setCityName(location.LocalizedName);
-            return location.Key;
+          const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
+            params: {
+              apikey: apiKey,
+              q: city,
+            },
+          });
+          const location = locationResponse.data[0];
+          setCityName(location.LocalizedName);
+          return location.Key;
         } catch (error) {
-            console.error('Error fetching location key:', error);
-            setError(error);
-            setLoading(false);
+          console.error('Error fetching location key:', error);
+          setError(error);
+          setLoading(false);
         }
-    };
-
-    const fetchWeatherData = async (locationKey) => {
+      };
+  
+      const fetchWeatherData = async (locationKey) => {
         try {
-            const weatherResponse = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`, {
-                params: {
-                    apikey: apiKey,
-                    details: true
-                }
-            });
-            setCurrentWeather(weatherResponse.data[0]);
-            
-            const hourlyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}`, {
-                params: {
-                    apikey: apiKey,
-                    metric: true
-                }
-            });
-            setHourlyForecast(hourlyResponse.data);
-            
-            const dailyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}`, {
-                params: {
-                    apikey: apiKey,
-                    metric: true
-                }
-            });
-            setDailyForecast(dailyResponse.data.DailyForecasts);
-
-            setLoading(false);
+          const weatherResponse = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`, {
+            params: {
+              apikey: apiKey,
+              details: true,
+            },
+          });
+          setCurrentWeather(weatherResponse.data[0]);
+  
+          const hourlyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}`, {
+            params: {
+              apikey: apiKey,
+              metric: true,
+            },
+          });
+          setHourlyForecast(hourlyResponse.data);
+  
+          const dailyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}`, {
+            params: {
+              apikey: apiKey,
+              metric: true,
+            },
+          });
+          setDailyForecast(dailyResponse.data.DailyForecasts);
+  
+          setLoading(false);
         } catch (error) {
-            console.error('Error fetching weather data:', error);
-            setError(error);
-            setLoading(false);
+          console.error('Error fetching weather data:', error);
+          setError(error);
+          setLoading(false);
         }
-    };
-
-    const getUserLocation = () => {
+      };
+  
+      const getUserLocation = () => {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    const { latitude, longitude } = position.coords;
-                    fetchLocationKeyByCoords(latitude, longitude).then(locationKey => {
-                        if (locationKey) {
-                            fetchWeatherData(locationKey);
-                        }
-                    });
-                },
-                error => {
-                    console.error('Error fetching geolocation:', error);
-                    setError(error);
-                    setLoading(false);
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              fetchLocationKeyByCoords(latitude, longitude).then((locationKey) => {
+                if (locationKey) {
+                  fetchWeatherData(locationKey);
                 }
-            );
-        } else {
-            setError(new Error('Geolocation is not supported by this browser.'));
-            setLoading(false);
-        }
-    };
-
-    const fetchLocationKeyByCoords = async (latitude, longitude) => {
-        try {
-            const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
-                params: {
-                    apikey: apiKey,
-                    q: `${latitude},${longitude}`
-                }
-            });
-            const location = locationResponse.data;
-            setCityName(location.ParentCity ? location.ParentCity.LocalizedName : location.LocalizedName);
-            return location.Key;
-        } catch (error) {
-            console.error('Error fetching location key:', error);
-            setError(error);
-            setLoading(false);
-        }
-    };
-
-    if (city) {
-        fetchLocationKey(city).then(locationKey => {
-            if (locationKey) {
-                fetchWeatherData(locationKey);
+              });
+            },
+            (error) => {
+              console.error('Error fetching geolocation:', error);
+              setError(error);
+              setLoading(false);
             }
+          );
+        } else {
+          setError(new Error('Geolocation is not supported by this browser.'));
+          setLoading(false);
+        }
+      };
+  
+      const fetchLocationKeyByCoords = async (latitude, longitude) => {
+        try {
+          const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
+            params: {
+              apikey: apiKey,
+              q: `${latitude},${longitude}`,
+            },
+          });
+          const location = locationResponse.data;
+          setCityName(location.ParentCity ? location.ParentCity.LocalizedName : location.LocalizedName);
+          return location.Key;
+        } catch (error) {
+          console.error('Error fetching location key:', error);
+          setError(error);
+          setLoading(false);
+        }
+      };
+  
+      if (city) {
+        fetchLocationKey(city).then((locationKey) => {
+          if (locationKey) {
+            fetchWeatherData(locationKey);
+          }
         });
-    } else {
+      } else {
         getUserLocation();
+      }
     }
-}, [city, apiKey]);
+  }, [city, apiKey, useMockData]);
+
+//   useEffect(() => {
+//     const fetchLocationKey = async (city) => {
+//         try {
+//             const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     q: city
+//                 }
+//             });
+//             const location = locationResponse.data[0];
+//             setCityName(location.LocalizedName);
+//             return location.Key;
+//         } catch (error) {
+//             console.error('Error fetching location key:', error);
+//             setError(error);
+//             setLoading(false);
+//         }
+//     };
+
+//     const fetchWeatherData = async (locationKey) => {
+//         try {
+//             const weatherResponse = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     details: true
+//                 }
+//             });
+//             setCurrentWeather(weatherResponse.data[0]);
+            
+//             const hourlyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     metric: true
+//                 }
+//             });
+//             setHourlyForecast(hourlyResponse.data);
+            
+//             const dailyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     metric: true
+//                 }
+//             });
+//             setDailyForecast(dailyResponse.data.DailyForecasts);
+
+//             setLoading(false);
+//         } catch (error) {
+//             console.error('Error fetching weather data:', error);
+//             setError(error);
+//             setLoading(false);
+//         }
+//     };
+
+//     const getUserLocation = () => {
+//         if (navigator.geolocation) {
+//             navigator.geolocation.getCurrentPosition(
+//                 position => {
+//                     const { latitude, longitude } = position.coords;
+//                     fetchLocationKeyByCoords(latitude, longitude).then(locationKey => {
+//                         if (locationKey) {
+//                             fetchWeatherData(locationKey);
+//                         }
+//                     });
+//                 },
+//                 error => {
+//                     console.error('Error fetching geolocation:', error);
+//                     setError(error);
+//                     setLoading(false);
+//                 }
+//             );
+//         } else {
+//             setError(new Error('Geolocation is not supported by this browser.'));
+//             setLoading(false);
+//         }
+//     };
+
+//     const fetchLocationKeyByCoords = async (latitude, longitude) => {
+//         try {
+//             const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
+//                 params: {
+//                     apikey: apiKey,
+//                     q: `${latitude},${longitude}`
+//                 }
+//             });
+//             const location = locationResponse.data;
+//             setCityName(location.ParentCity ? location.ParentCity.LocalizedName : location.LocalizedName);
+//             return location.Key;
+//         } catch (error) {
+//             console.error('Error fetching location key:', error);
+//             setError(error);
+//             setLoading(false);
+//         }
+//     };
+
+//     if (city) {
+//         fetchLocationKey(city).then(locationKey => {
+//             if (locationKey) {
+//                 fetchWeatherData(locationKey);
+//             }
+//         });
+//     } else {
+//         getUserLocation();
+//     }
+// }, [city, apiKey]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
