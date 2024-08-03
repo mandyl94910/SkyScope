@@ -1,0 +1,7 @@
+.chart-container {
+  width: 50%;
+  margin: 0 auto;
+  margin-left: 25%;
+  max-width: 1000px; /* 固定最大宽度 */
+  transition: none; /* 禁用过渡效果 */
+}
