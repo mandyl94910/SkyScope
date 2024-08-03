@@ -1,6 +1,6 @@
 # SkyScope
 
-SkyScope is a weather forecasting website designed as the final project for the Web Development course. It allows users to search for and view current weather conditions and forecasts for any city.
+SkyScope is a weather forecasting website it allows users to search for and view current weather conditions and forecasts for any city.
 
 ## Authors
 
