@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import WeatherChart from '../components/WeatherChart';
 import HourlyForecastChart from '../components/HourlyForecastChart';
-// import { generateFakeWeatherData, generateFakeHourlyForecast, generateFakeDailyForecast } from '../mockData';//使用假数据部分
+// Import CSS styles
 import '../css/CurrentWeather.css'; 
-import { icons, iconTexts } from '../assets/icons'; // 导入图标映射和文本映射
+import { icons, iconTexts } from '../assets/icons'; // Import icon mappings
 
+// Weather component to fetch and display weather data
 const Weather = ({ city }) => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [hourlyForecast, setHourlyForecast] = useState([]);
@@ -15,18 +16,18 @@ const Weather = ({ city }) => {
   const [cityName, setCityName] = useState('');
 
   const apiKey = 'BTYZ5eALVp2bqivFbaRd1iNECLAnv1qZ';
-  // const useMockData = process.env.REACT_APP_USE_MOCK_DATA === 'true';//使用假数据部分
+  // const useMockData = process.env.REACT_APP_USE_MOCK_DATA === 'true'; // Flag to determine if mock data is used
 
   // useEffect(() => {
   //   if (useMockData) {
-  //     //使用假数据部分
+  //     // Using mock data
   //     console.log('Using mock data:', useMockData);
   //     setCurrentWeather(generateFakeWeatherData());
   //     setHourlyForecast(generateFakeHourlyForecast());
   //     setDailyForecast(generateFakeDailyForecast());
   //     setCityName(city || 'Mock City');
   //     setLoading(false);
-  //   } else {//使用假数据部分结束
+  //   } else {
   //     const fetchLocationKey = async (city) => {
   //       try {
   //         const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
@@ -132,7 +133,9 @@ const Weather = ({ city }) => {
   //   }
   // }, [city, apiKey, useMockData]);
 
+  // useEffect hook to fetch weather data
   useEffect(() => {
+    // Fetch location key based on city name
     const fetchLocationKey = async (city) => {
         try {
             const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
@@ -151,6 +154,7 @@ const Weather = ({ city }) => {
         }
     };
 
+    // Fetch weather data using location key
     const fetchWeatherData = async (locationKey) => {
         try {
             const weatherResponse = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`, {
@@ -185,6 +189,7 @@ const Weather = ({ city }) => {
         }
     };
 
+    // Get user's location if no city is provided
     const getUserLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -208,6 +213,7 @@ const Weather = ({ city }) => {
         }
     };
 
+    // Fetch location key using coordinates
     const fetchLocationKeyByCoords = async (latitude, longitude) => {
         try {
             const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
@@ -240,6 +246,7 @@ const Weather = ({ city }) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  // Render weather data
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Weather in {cityName}</h1>

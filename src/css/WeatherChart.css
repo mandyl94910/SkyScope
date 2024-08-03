@@ -44,8 +44,8 @@
   .weather-icon {
     flex: 1;
     text-align: center;
-    width: 100px; /* 根据需要调整宽度 */
-    height: 100px; /* 根据需要调整高度 */
+    width: 100px;
+    height: 100px;
   }
   
   .temperature {
@@ -64,7 +64,7 @@
   
   .low-temp {
     color: #1e90ff;
-    margin-left: 10px; /* 调整这个值来增加或减少间距 */
+    margin-left: 10px;
   }
   
   .precipitation {

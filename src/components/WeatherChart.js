@@ -1,7 +1,8 @@
 import React from 'react';
 import '../css/WeatherChart.css'; 
-import { icons, iconTexts } from '../assets/icons'; // 导入图标映射和文本映射
+import { icons, iconTexts } from '../assets/icons'; // Import icon mappings and text descriptions
 
+// WeatherChart component to display daily forecast data
 const WeatherChart = ({ dailyForecast }) => {
   return (
     <div className="weather-chart">
@@ -17,13 +18,16 @@ const WeatherChart = ({ dailyForecast }) => {
               </div>
             </div>
             <div className="weather-icon">
-              <img className="weather-icon" src={icons[day.Day.Icon]} alt={day.Day.IconPhrase} /> {/* 使用图标映射 */}
+              {/* Display weather icon based on the day's data */}
+              <img className="weather-icon" src={icons[day.Day.Icon]} alt={day.Day.IconPhrase} />
             </div>
-            <div className="weather-text" >
-              <span>{iconTexts[day.Day.Icon]}</span> {/* 显示对应的文本 */}
+            <div className="weather-text">
+              {/* Show corresponding text for the weather icon */}
+              <span>{iconTexts[day.Day.Icon]}</span>
             </div>
             <div className="temperature">
               <div className="temp-row">
+                {/* Display high and low temperatures */}
                 <span className="high-temp">High: {day.Temperature.Maximum.Value}°C</span>
                 <span className="temp-space"></span>
                 <span className="low-temp">Low: {day.Temperature.Minimum.Value}°C</span>
