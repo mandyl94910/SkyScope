@@ -17,17 +17,27 @@ body, html {
 
 .App-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between; /* 分配空间，将元素分布在左右两边 */
   background-color: #0077be;
   padding: 20px;
   color: white;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.App-logo {
+  height: 50px;
+  margin-right: 15px; /* 调整 logo 与标题的间距 */
+  vertical-align: middle;
+}
+
 .App-title {
   margin: 0;
   font-size: 2.5em;
-  text-align: left;
 }
 
 .search-form {
@@ -69,4 +79,3 @@ footer {
   margin-right: 15px; /* 调整 logo 与标题的间距 */
   vertical-align: middle;
 }
-
