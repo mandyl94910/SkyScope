@@ -42,7 +42,7 @@ SkyScope is a weather forecasting website designed as the final project for the 
    ```bash
    npm start
 
-Open http://localhost:3000 in your browser to view the application.
+     Open http://localhost:3000 in your browser to view the application.
 
 ## Usage
 
