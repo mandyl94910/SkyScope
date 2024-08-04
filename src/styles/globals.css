@@ -25,8 +25,3 @@ footer {
   text-align: center; /* Center-align text */
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: revert;  /* 恢复默认字体大小 */
-  font-weight: revert;  /* 恢复默认字体粗细 */
-  margin: revert;  /* 恢复默认的外边距 */
-}

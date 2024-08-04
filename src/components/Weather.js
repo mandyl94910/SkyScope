@@ -246,7 +246,7 @@ const Weather = ({ city }) => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-6xl font-bold mb-4">Weather in {cityName}</h1>
+      <h1 className="text-5xl font-bold mb-4">Weather in {cityName}</h1>
       {currentWeather && (
         <div className={styles.chartItem}>
           <div className={styles.currentWeatherTemp}>
