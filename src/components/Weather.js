@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import WeatherChart from './Weatherchart';
-import HourlyForecastChart from './Hourlyforecastchart';
+import WeatherChart from './WeatherChart';
+import HourlyForecastChart from './HourlyForecastChart';
 import { icons, iconTexts } from '../../public/assets/icons/iconIndex'; // 确保路径正确
 import styles from '../css/currentweather.module.css'; // 引入CSS模块
 // import { generateFakeWeatherData, generateFakeHourlyForecast, generateFakeDailyForecast } from '../mockData'; // 使用假数据部分
