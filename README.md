@@ -38,7 +38,12 @@ SkyScope is a weather forecasting website it allows users to search for and view
    ```bash   
    npm install
 
-4. Start the development server:
+4. To create an optimized production build, run:
+
+    ```bash
+    npm run build
+
+5. Start the development server:
 
    ```bash
    npm start
