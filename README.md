@@ -15,10 +15,11 @@ SkyScope is a weather forecasting website it allows users to search for and view
 
 ## Technologies Used
 
-- **React:** JavaScript library for building user interfaces.
+- **Next.js:** A JavaScript framework for building user interfaces and server-side rendering.
 - **CSS:** For styling the application.
 - **Axios:** For making HTTP requests to the weather API.
 - **Weather API:** Provides weather data (AccuWeather API).
+- **Vercel:** Platform for deploying and hosting websites.
 
 ## Installation
 
