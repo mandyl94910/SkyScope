@@ -1,0 +1,63 @@
+/* Main container for the app */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center; /* Center-align text */
+}
+
+/* Header styling */
+.AppHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribute space to position elements on the left and right */
+  background-color: #0077be; /* Blue background for header */
+  padding: 20px;
+  color: white; /* White text color */
+}
+
+/* Styling for the left side of the header */
+.headerLeft {
+  display: flex;
+  align-items: center; /* Vertically center align items */
+}
+
+/* Logo styling */
+.AppLogo {
+  height: 50px; /* Logo height */
+  margin-right: 15px; /* Adjust spacing between logo and title */
+  vertical-align: middle; /* Align logo vertically */
+}
+
+/* Title styling */
+.AppTitle {
+  margin: 0;
+  font-size: 2.5em; /* Large font size for title */
+}
+
+/* Search form styling */
+.searchForm {
+  display: flex;
+}
+
+/* Input field styling within search form */
+.searchForm input {
+  padding: 5px;
+  font-size: 1em;
+  color: black; /* 设置输入字体颜色为黑色 */
+}
+
+/* Button styling within search form */
+.searchForm button {
+  padding: 5px 10px;
+  font-size: 1em;
+  background-color: white;
+  color: #0077be; /* Blue text color */
+  border: none;
+  cursor: pointer; /* Pointer cursor for buttons */
+}
+
+/* Hover effect for search form button */
+.searchForm button:hover {
+  background-color: #e0e0e0; /* Light gray background on hover */
+}

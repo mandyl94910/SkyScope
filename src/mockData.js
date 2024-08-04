@@ -1,3 +1,4 @@
+//SkyScope\src\mockData.js
 import { faker } from '@faker-js/faker';
 
 // 生成假天气数据
@@ -16,7 +17,7 @@ export const generateFakeHourlyForecast = () => (
   Array.from({ length: 12 }, (_, index) => ({
     DateTime: faker.date.recent().toISOString(),
     Temperature: { Value: faker.number.int({ min: 15, max: 35 }) },
-    IconPhrase: faker.word.adjective() 
+    IconPhrase: faker.word.adjective()
   }))
 );
 

@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles for body and html elements */
+body, html {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8; /* Light background color */
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Main content area styling */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Footer styling */
+footer {
+  background-color: #0077be; /* Blue background for footer */
+  color: white; /* White text color */
+  padding: 10px;
+  text-align: center; /* Center-align text */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: revert;  /* 恢复默认字体大小 */
+  font-weight: revert;  /* 恢复默认字体粗细 */
+  margin: revert;  /* 恢复默认的外边距 */
+}

@@ -1,0 +1,51 @@
+/*SkyScope/src/css/currentweather.css  */
+.chartItem {
+  display: flex;
+  align-items: center;
+  background: #ffffff; /* White background for chart items */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 15px;
+  border-radius: 8px; /* Rounded corners */
+  gap: 50px; /* Adjust spacing between the three divs */
+}
+
+.currentWeatherTemp {
+  margin-left: 20%;
+  text-align: left; /* Align text to the left */
+}
+
+.currentWeatherIcon {
+  margin-left: 15%;
+  text-align: center; /* Center align text */
+}
+
+.currentWeatherDetails {
+  margin-left: 15%;
+  flex: 2; /* Allow this section to take more space */
+  text-align: left;
+}
+
+.noBullets {
+  list-style-type: none; /* Remove bullets from list items */
+  margin: 0;
+  padding: 0;
+}
+
+.currentWeatherDetails ul {
+  list-style: none; /* Ensure no other styles override */
+  padding: 0;
+}
+
+.currentWeatherDetails li {
+  margin: 5px 0; /* Space between list items */
+}
+
+.customFontSize {
+  font-size: 60px; /* Large font size */
+  font-weight: bold; /* Bold font weight */
+}
+
+.weatherIcon {
+  width: 100px; /* Adjust width as needed */
+  height: 100px; /* Adjust height as needed */
+}

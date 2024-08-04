@@ -1,0 +1,10 @@
+/*SkyScope/src/css/hourlyforecastchart.module.css  */
+.chartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}

@@ -1,36 +1,33 @@
+//SkyScope/src/components/Weatherchart.js
 import React from 'react';
-import '../css/WeatherChart.css'; 
-import { icons, iconTexts } from '../assets/icons'; // Import icon mappings and text descriptions
+import { icons, iconTexts } from '../../public/assets/icons/iconIndex'; // 确保路径正确
+import styles from '../css/weatherchart.module.css'; // Import CSS module
 
-// WeatherChart component to display daily forecast data
 const WeatherChart = ({ dailyForecast }) => {
   return (
-    <div className="weather-chart">
-      <ul className="chart-list">
+    <div className={styles.weatherChart}>
+      <ul className={styles.chartList}>
         {dailyForecast.map((day, index) => (
-          <li key={index} className="chart-item">
-            <div className="date">
-              <div className="weekday">
+          <li key={index} className={styles.chartItem}>
+            <div className={styles.date}>
+              <div className={styles.weekday}>
                 {new Date(day.Date).toLocaleDateString(undefined, { weekday: 'long' })}
               </div>
-              <div className="month-day">
+              <div className={styles.monthDay}>
                 {new Date(day.Date).toLocaleDateString(undefined, { month: 'long', day: 'numeric' })}
               </div>
             </div>
-            <div className="weather-icon">
-              {/* Display weather icon based on the day's data */}
-              <img className="weather-icon" src={icons[day.Day.Icon]} alt={day.Day.IconPhrase} />
+            <div className={styles.weatherIcon}>
+              <img className={styles.weatherIcon} src={icons[day.Day.Icon]} alt={iconTexts[day.Day.Icon]} />
             </div>
-            <div className="weather-text">
-              {/* Show corresponding text for the weather icon */}
+            <div className={styles.weatherText}>
               <span>{iconTexts[day.Day.Icon]}</span>
             </div>
-            <div className="temperature">
-              <div className="temp-row">
-                {/* Display high and low temperatures */}
-                <span className="high-temp">High: {day.Temperature.Maximum.Value}°C</span>
-                <span className="temp-space"></span>
-                <span className="low-temp">Low: {day.Temperature.Minimum.Value}°C</span>
+            <div className={styles.temperature}>
+              <div className={styles.tempRow}>
+                <span className={styles.highTemp}>High: {day.Temperature.Maximum.Value}°C</span>
+                <span className={styles.tempSpace}></span>
+                <span className={styles.lowTemp}>Low: {day.Temperature.Minimum.Value}°C</span>
               </div>
             </div>
           </li>

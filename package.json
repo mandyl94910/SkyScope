@@ -13,14 +13,13 @@
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
+    "react-script": "^2.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +41,9 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "faker": "^6.6.6"
+    "autoprefixer": "^10.4.20",
+    "faker": "^6.6.6",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7"
   }
 }

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import WeatherChart from '../components/WeatherChart';
-import HourlyForecastChart from '../components/HourlyForecastChart';
-// Import CSS styles
-import '../css/CurrentWeather.css'; 
-import { icons } from '../assets/icons'; // Import icon mappings
+import WeatherChart from './Weatherchart';
+import HourlyForecastChart from './Hourlyforecastchart';
+import { icons, iconTexts } from '../../public/assets/icons/iconIndex'; // 确保路径正确
+import styles from '../css/currentweather.module.css'; // 引入CSS模块
+// import { generateFakeWeatherData, generateFakeHourlyForecast, generateFakeDailyForecast } from '../mockData'; // 使用假数据部分
 
-// Weather component to fetch and display weather data
 const Weather = ({ city }) => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [hourlyForecast, setHourlyForecast] = useState([]);
@@ -16,11 +15,10 @@ const Weather = ({ city }) => {
   const [cityName, setCityName] = useState('');
 
   const apiKey = 'BTYZ5eALVp2bqivFbaRd1iNECLAnv1qZ';
-  // const useMockData = process.env.REACT_APP_USE_MOCK_DATA === 'true'; // Flag to determine if mock data is used
+  // const useMockData = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true';
 
   // useEffect(() => {
   //   if (useMockData) {
-  //     // Using mock data
   //     console.log('Using mock data:', useMockData);
   //     setCurrentWeather(generateFakeWeatherData());
   //     setHourlyForecast(generateFakeHourlyForecast());
@@ -30,7 +28,7 @@ const Weather = ({ city }) => {
   //   } else {
   //     const fetchLocationKey = async (city) => {
   //       try {
-  //         const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
+  //         const locationResponse = await axios.get('https://dataservice.accuweather.com/locations/v1/cities/search', {
   //           params: {
   //             apikey: apiKey,
   //             q: city,
@@ -45,7 +43,7 @@ const Weather = ({ city }) => {
   //         setLoading(false);
   //       }
   //     };
-  
+
   //     const fetchWeatherData = async (locationKey) => {
   //       try {
   //         const weatherResponse = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`, {
@@ -55,7 +53,7 @@ const Weather = ({ city }) => {
   //           },
   //         });
   //         setCurrentWeather(weatherResponse.data[0]);
-  
+
   //         const hourlyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${locationKey}`, {
   //           params: {
   //             apikey: apiKey,
@@ -63,7 +61,7 @@ const Weather = ({ city }) => {
   //           },
   //         });
   //         setHourlyForecast(hourlyResponse.data);
-  
+
   //         const dailyResponse = await axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}`, {
   //           params: {
   //             apikey: apiKey,
@@ -71,7 +69,7 @@ const Weather = ({ city }) => {
   //           },
   //         });
   //         setDailyForecast(dailyResponse.data.DailyForecasts);
-  
+
   //         setLoading(false);
   //       } catch (error) {
   //         console.error('Error fetching weather data:', error);
@@ -79,7 +77,7 @@ const Weather = ({ city }) => {
   //         setLoading(false);
   //       }
   //     };
-  
+
   //     const getUserLocation = () => {
   //       if (navigator.geolocation) {
   //         navigator.geolocation.getCurrentPosition(
@@ -102,10 +100,10 @@ const Weather = ({ city }) => {
   //         setLoading(false);
   //       }
   //     };
-  
+
   //     const fetchLocationKeyByCoords = async (latitude, longitude) => {
   //       try {
-  //         const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
+  //         const locationResponse = await axios.get('https://dataservice.accuweather.com/locations/v1/cities/geoposition/search', {
   //           params: {
   //             apikey: apiKey,
   //             q: `${latitude},${longitude}`,
@@ -120,7 +118,7 @@ const Weather = ({ city }) => {
   //         setLoading(false);
   //       }
   //     };
-  
+
   //     if (city) {
   //       fetchLocationKey(city).then((locationKey) => {
   //         if (locationKey) {
@@ -133,9 +131,7 @@ const Weather = ({ city }) => {
   //   }
   // }, [city, apiKey, useMockData]);
 
-  // useEffect hook to fetch weather data
   useEffect(() => {
-    // Fetch location key based on city name
     const fetchLocationKey = async (city) => {
         try {
             const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/search`, {
@@ -154,7 +150,6 @@ const Weather = ({ city }) => {
         }
     };
 
-    // Fetch weather data using location key
     const fetchWeatherData = async (locationKey) => {
         try {
             const weatherResponse = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`, {
@@ -189,7 +184,6 @@ const Weather = ({ city }) => {
         }
     };
 
-    // Get user's location if no city is provided
     const getUserLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -213,7 +207,6 @@ const Weather = ({ city }) => {
         }
     };
 
-    // Fetch location key using coordinates
     const fetchLocationKeyByCoords = async (latitude, longitude) => {
         try {
             const locationResponse = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search`, {
@@ -246,20 +239,24 @@ const Weather = ({ city }) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  // Render weather data
+  if (currentWeather) {
+    console.log('Icon Path:', icons[currentWeather.WeatherIcon]);
+    console.log('Icon Alt Text:', iconTexts[currentWeather.WeatherIcon]);
+  }
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Weather in {cityName}</h1>
+      <h1 className="text-6xl font-bold mb-4">Weather in {cityName}</h1>
       {currentWeather && (
-        <div className="chart-item">
-          <div className="current-weather-temp">
-            <h1 className="custom-font-size">{currentWeather.Temperature.Metric.Value} °C</h1>
+        <div className={styles.chartItem}>
+          <div className={styles.currentWeatherTemp}>
+            <h1 className={styles.customFontSize}>{currentWeather.Temperature.Metric.Value} °C</h1>
           </div>
-          <div className="current-weather-icon">
-            <img className="weather-icon" src={icons[currentWeather.WeatherIcon]} alt="Weather Icon" />
+          <div className={styles.currentWeatherIcon}>
+            <img className={styles.weatherIcon} src={icons[currentWeather.WeatherIcon]} alt={iconTexts[currentWeather.WeatherIcon]} />
           </div>
-          <div className="current-weather-details">
-            <ul className="no-bullets">
+          <div className={styles.currentWeatherDetails}>
+            <ul className={styles.noBullets}>
               <li>Weather: {currentWeather.WeatherText}</li>
               <li>Wind Speed: {currentWeather.Wind.Speed.Metric.Value} km/h</li>
               <li>Visibility: {currentWeather.Visibility.Metric.Value} km</li>

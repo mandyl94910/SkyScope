@@ -1,11 +1,9 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto'; // Import Chart.js components
-import '../css/HourlyForecastChart.css'; // Import custom styles
+import styles from '../css/hourlyforecastchart.module.css'; // Import CSS module
 
-// Component to display hourly forecast as a line chart
 const HourlyForecastChart = ({ hourlyForecast }) => {
-  // Prepare data for the chart
   const data = {
     labels: hourlyForecast.map(forecast => 
       new Date(forecast.DateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -25,7 +23,6 @@ const HourlyForecastChart = ({ hourlyForecast }) => {
     ]
   };
 
-  // Chart options
   const options = {
     responsive: true,
     animation: false,
@@ -66,12 +63,11 @@ const HourlyForecastChart = ({ hourlyForecast }) => {
     }
   };
 
-  // Render the chart
   return (
-    <div className="chart-container" style={{ height: '350px', width: '800px' }}>
+    <div className={styles.chartContainer}>
       <Line data={data} options={options} />
     </div>
   );
 };
 
-export default HourlyForecastChart; // Export the component
+export default HourlyForecastChart;
