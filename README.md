@@ -67,3 +67,10 @@ SkyScope is a weather forecasting website it allows users to search for and view
 - React Documentation
 - AccuWeather API
 - Create React App#
+
+## Deployment
+- The application is deployed on Vercel and can be accessed at:
+
+- SkyScope on Vercel：https://sky-scope.vercel.app/
+
+- Feel free to visit the link to see the application in action.
